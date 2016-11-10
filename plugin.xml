@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="rl4e-printer-plugin"
+    version="0.2.11">
+    <name>Cordova Label Printer Plugin</name>
+    <description>Label Printing plugin desgined for Datamax RL4e printers.</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,android,label,printer</keywords>
+    <issue></issue>
+
+    <js-module src="www/labelprinter.js" name="LabelPrinter">
+        <clobbers target="LabelPrinter" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="LabelPrinterPlugin">
+                <param name="android-package" value="schonmann.rl4e.LabelPrinterPlugin"/>
+            </feature>
+        </config-file>
+
+        <framework src="src/android/do_sdk.gradle" custom="true" type="gradleReference" />
+        <resource-file src="sdk/DO_AndroidSDK_v2.4.8.aar" target="libs/DO_AndroidSDK_v2.4.8.aar" />
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+			<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+			<uses-permission android:name="android.permission.BLUETOOTH" />
+			<uses-permission android:name="android.permission.INTERNET" />
+			<uses-permission android:name="android.permission.EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="application">
+        </config-file>
+		
+		<!-- SOURCE FILES! -->
+		
+        <source-file src="src/android/LabelPrinterPlugin.java"	target-dir="src/schonmann/rl4e/" />
+		<source-file src="src/android/PrintLabelTask.java"	target-dir="src/schonmann/rl4e/" />
+		
+    </platform>
+
+</plugin>
