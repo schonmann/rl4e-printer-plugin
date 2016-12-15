@@ -16,6 +16,7 @@ import java.util.Set;
 
 import honeywell.connection.ConnectionBase;
 import honeywell.connection.Connection_Bluetooth;
+import honeywell.connection.Connection_TCP;
 
 public class PrintLabelTask extends AsyncTask<JSONObject, Void, Void>{
 
@@ -30,20 +31,23 @@ public class PrintLabelTask extends AsyncTask<JSONObject, Void, Void>{
 	@Override
 	protected Void doInBackground(JSONObject... params){
 		try {
+			Log.d(TAG, "VAI IMPRIMIR");
 			doPrint(params[0].getString("mac"), params[0].getString("data").getBytes());
 		}catch(JSONException jse){
+			Log.d(TAG, jse.toString());
 			callback.error(400);
 		}catch(Exception e){
+			Log.d(TAG, e.toString());
 			callback.error(500);
 		}
 
 		return null;
 	}
-
+	
 	private void doPrint(String mac, byte[] data) throws Exception{
 		
-		ConnectionBase conn = Connection_Bluetooth.createClient(mac,false);
-
+		//ConnectionBase conn = Connection_Bluetooth.createClient(mac,false);
+		ConnectionBase conn = Connection_TCP.createClient("192.168.20.114",9100);
 		Log.d(TAG, "Estabilishing connection...");
 
 		if(!conn.getIsOpen()){

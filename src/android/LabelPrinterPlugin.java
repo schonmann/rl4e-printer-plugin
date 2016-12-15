@@ -9,6 +9,7 @@ import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.util.Log;
 
 /**
  * Created by Antonio Schönmann on 29/06/2016.
@@ -30,8 +31,16 @@ public class LabelPrinterPlugin extends CordovaPlugin{
 
 	    final JSONObject options = args.getJSONObject(0);
         final Context context = this.cordova.getActivity().getApplicationContext();
-        
+        System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("---------MONEDA CHEGOU AQUI ESSA DESGRACA----------------");
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("---------------------------------------------------------------------------------------");
+		System.out.println("---------------------------------------------------------------------------------------");
         if(PRINT.equals(action)){
+			Log.d(TAG,"PASSOU AQUI");
 			PrintLabelTask plTask = new PrintLabelTask(context, callbackContext);
 			plTask.execute(options);
         }
