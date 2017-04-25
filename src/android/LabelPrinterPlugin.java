@@ -21,24 +21,14 @@ public class LabelPrinterPlugin extends CordovaPlugin{
     private static final String PRINT = "print";
 
     public LabelPrinterPlugin() {
-	}
+    }
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
     }
 
     public boolean execute(final String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-
-	    final JSONObject options = args.getJSONObject(0);
-        final Context context = this.cordova.getActivity().getApplicationContext();
-        System.out.println("---------------------------------------------------------------------------------------");
-		System.out.println("---------------------------------------------------------------------------------------");
-		System.out.println("---------------------------------------------------------------------------------------");
-		System.out.println("---------MONEDA CHEGOU AQUI ESSA DESGRACA----------------");
-		System.out.println("---------------------------------------------------------------------------------------");
-		System.out.println("---------------------------------------------------------------------------------------");
-		System.out.println("---------------------------------------------------------------------------------------");
-		System.out.println("---------------------------------------------------------------------------------------");
+	final JSONObject options = args.getJSONObject(0);
         if(PRINT.equals(action)){
 			Log.d(TAG,"PASSOU AQUI");
 			PrintLabelTask plTask = new PrintLabelTask(context, callbackContext);
